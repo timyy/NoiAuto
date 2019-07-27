@@ -182,7 +182,6 @@ double Operate(double b, double a, char top)  //用于计算当前的值，并�
 }  
 void Jsbds_operate(char str[])             //读入一个简单算术表达式,并将计算结果返回到主函数  
 {  
-    cout << str << endl;
 
     OptrStack *optr = Init_OptrStack();     //初始化操作符栈    
     OpndStack *opnd = Init_OpndStack();     //初始化操作数栈    
@@ -259,16 +258,16 @@ void Jsbds_operate(char str[])             //读入一个简单算术表达式,�
         Push_OpndStack(opnd, c);  
         //将计算后的值压入操作数栈中       
     }  
-    cout << "Result: ";  
+    // cout << "Result: ";  
     std::cout << GetTop_OpndStack(opnd, c) << endl;//将操作数栈中的元素(即表达式的最终结果)打印出来    
 }  
     
 int main()  
 {  
     char str[100];  
-    std::cout << "Input experce (function: +,-,*,/)" << endl;  
+    // std::cout << "Input experce (function: +,-,*,/)" << endl;  
     cin >> str;  
-    cout << str << endl;
+    // cout << str << endl;
     Jsbds_operate(str);  
     return 0;  
 }  
