@@ -9,8 +9,8 @@
 #####################################################
 
 ## version 0.1
-## 自动检查各目录下的所有CPP文件，如果存在同文件名的_data目录，自动进行编译，并执行_data所有.in文件，结果和.out对比。
-#  一样则通过，不同出错。
+## 自动检查各目录下的所有CPP文件，如果存在同文件名的_data目录，自动进行编译。
+#  并执行_data所有.in文件，结果和.out对比。 一样则通过，不同出错。
 ## 
 ## 适用于单文件，用在NOI下应该够了
 ##
@@ -91,9 +91,13 @@ if __name__ == '__main__':
                 (shortName,extension) = os.path.splitext(name);
                 makefile(dirpath,shortName)
     print()
-    print("="*80)
-    print("Total Passed:",OKNum)
-    print("Total Error:",ErrorNum)
+    print('\033[5;33;44m',"="*48,'\033[0m')
+    print(" \033[5;37;42m=\t\tTotal Passed:\t",OKNum,'\033[0m\t\t=')
+    if ErrorNum:
+        print(" \033[5;37;41m=\t\tTotal Error:\t",ErrorNum ,"\033[0m\t\t=")
+    else:
+        print(' \033[5;37;42m=\t\tAll OK!\033[0m\t\t\t=')
+    print('\033[5;33;44m',"="*48,'\033[0m')
 #    cppfile = "D:/Timyy/project/noi/pythonAuto/src/T1398.cpp"
 #    exefile = "D:/Timyy/project/noi/pythonAuto/src/T1398.exe"
 
