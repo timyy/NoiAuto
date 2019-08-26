@@ -7,9 +7,9 @@
 using namespace std;
 
 // 分级处理debug 信息。
-#define DEBUG
-#define DEBUGR
-
+//#define DEBUG
+//#define DEBUGR
+ 
 #ifdef DEBUG
 //名字替换，并在打印出来的内容加上前缀,同时加入定位的功能，并让打印的前缀具备特殊颜色(\033[1;32m  \033[0m这些表示颜色，\t一定程度上使屏幕输出对齐)
 // 出绿字的，当第一级。
@@ -29,7 +29,7 @@ using namespace std;
 const int NMax = 200;
 char o[NMax], code[100][NMax];
 int l;
- 
+const int INF = 10e6;
 bool isNum(char c) {
 	if (c >= '0' && c <= '9')
 		return true;
@@ -45,7 +45,7 @@ int readNum(char str[]) {
 	{
 		if (c == 'n')
 		{
-			value = 10e6;
+			value = INF;
 			break;
 		}
 		if (isNum(c))
@@ -56,6 +56,8 @@ int readNum(char str[]) {
 	return value;
 }
 int len(int i) {
+	if (i >= INF)
+		return 1;
 	int n = 1;
 
 	while ((i = i / 10) != 0) {
@@ -212,14 +214,3 @@ int main()
 	// system("PAUSE");
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-

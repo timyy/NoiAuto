@@ -15,6 +15,7 @@
 ## 适用于单文件，用在NOI下应该够了
 ##
 import os
+import subprocess
 
 global OKNum,ErrorNum
 
@@ -64,6 +65,13 @@ def makefile(path, shortName):
 
                         #BUG: 组合字串的长文件名必须用"括起来。
                         main = '"' + exefile + '"' + ' < "' + infile + '"'
+                        #BUG 设置path环境变量，以便程序能正确运行。
+                        new_env = os.environ.copy()
+                        new_env['PATH'] = 'C:/MinGW/bin/;%PATH%'
+
+                        #out= subprocess.Popen(main, env=new_env)
+                        #stdout,stderr = out.communicate()
+                        #outvalue = stdout
                         out= os.popen(main)
                         outvalue = out.read()
                         with open(outfile,'r') as f:
@@ -73,15 +81,14 @@ def makefile(path, shortName):
                                 #print("OK")
                             else:
                                 ErrorNum += 1
-                                print("[Error]:")
+                                print("\033[1;31m[Error]:\033[0m")
                                 print("\t\t", main)
-                                print("\tOUT:\n",outvalue)
-                                print("\tTrueOut:\n",outRight)
+                                print("\033[1;33m\tOUT:\n\033[0m",outvalue)
+                                print("\033[1;32m\tTrueOut:\n\033[0m",outRight)
                                 with open(outfile+".tmp","w") as fout:
                                     fout.write(outvalue)
 
-if __name__ == '__main__':
-    global OKNum,ErrorNum
+if __name__ == '__main__':    
     OKNum = 0
     ErrorNum = 0
     currentPath = os.getcwd()
